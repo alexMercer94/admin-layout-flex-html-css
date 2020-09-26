@@ -1,4 +1,3 @@
-
 html {
     @include box-sizing(border-box);
     height: 100%;
@@ -6,17 +5,186 @@ html {
 *,
 *:after,
 *:before {
-  @include box-sizing(inherit);
+    @include box-sizing(inherit);
 }
 body {
     font-family: $fuente_principal;
+    height: 100%;
 }
 img {
     max-width: 100%;
 }
 .centrado {
-    text-align:center;
+    text-align: center;
 }
 .oculto {
     display: none;
+}
+
+.page {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.no-menu.page {
+    .sidebar {
+        margin-left: -20rem;
+    }
+}
+
+.header {
+    display: flex;
+
+    .nombre-sitio {
+        flex: 0 0 5rem;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        @include desktop {
+            flex: 0 0 20rem;
+        }
+        background-color: $secundario;
+        h1 {
+            color: $blanco;
+            margin: 0;
+        }
+
+        .escritorio {
+            display: none;
+            @include desktop {
+                display: block;
+            }
+        }
+
+        .movil {
+            @include desktop {
+                display: none;
+            }
+        }
+    }
+}
+
+.barra {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+    background-color: $primario;
+    .menu-izquierdo {
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        i {
+            color: $blanco;
+        }
+
+        .fa-arrow-right {
+            display: none;
+        }
+    }
+    .menu-derecho {
+        display: flex;
+        .caja {
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            &:hover {
+                background-color: darken($primario, 5);
+            }
+
+            a {
+                color: $blanco;
+                text-decoration: none;
+                span {
+                    background-color: $terciario;
+                    border-radius: 50%;
+                    padding: 0.5rem;
+                    margin-left: 0.5rem;
+                }
+            }
+        }
+    }
+}
+
+.contenedor-principal {
+    flex: 1;
+    display: flex;
+}
+
+.sidebar {
+    background-color: $grisOscuro;
+    flex: 0 0 20rem;
+    padding: 1rem;
+    color: $blanco;
+    transition: margin-left 0.3s ease;
+
+    .usuario {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        img {
+            max-width: 5rem;
+        }
+
+        font-weight: bold;
+
+        span {
+            font-weight: normal;
+            display: block;
+        }
+    }
+
+    .buscador {
+        margin-top: 1rem;
+        input[type='text'] {
+            width: 100%;
+            height: 3rem;
+            border: none;
+            border-radius: 10px;
+            padding-left: 1rem;
+        }
+    }
+
+    .menu-admin {
+        margin-top: 2rem;
+    }
+}
+
+.menu-admin {
+    .menu {
+        list-style: none;
+        padding: 0 0 0 1rem;
+        > li {
+            padding: 0.5rem;
+            a {
+                color: $blanco;
+                text-decoration: none;
+                padding: 0.5rem;
+                transition: padding-left 0.3s ease;
+                &:hover {
+                    background-color: $primario;
+                    padding-left: 2rem;
+                }
+            }
+
+            ul {
+                display: none;
+                margin-top: 1rem;
+                list-style: none;
+                background-color: darken($grisOscuro, 3);
+                padding: 1rem;
+                li {
+                    margin-bottom: 1rem;
+                    &:last-of-type {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+            &:hover {
+                ul {
+                    display: block;
+                }
+            }
+        }
+    }
 }
